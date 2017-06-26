@@ -62,6 +62,7 @@ TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 # Fixes Wifi-Mobile Data toggle issue
 MALLOC_SVELTE := true
+TARGET_NEEDS_GCC_LIBC := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
