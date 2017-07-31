@@ -1,8 +1,8 @@
 [
   {
-    "repository": "AOSP-JF-MM/platform_device_oppo_common",
+    "repository": "device_oppo_common/platform_device_oppo_common",
     "target_path": "device/oppo/common",
-    "branch": "aosp-7.1.2-onyx"
+    "branch": "a7.1.2"
   },
   {
     "repository": "CheckYourScreen/Arsenic.Kernel",
