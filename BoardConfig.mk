@@ -31,7 +31,8 @@ TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
-USE_CLANG_PLATFORM_BUILD := true
+# Use Snapdragon LLVM Compiler
+TARGET_USE_SDCLANG := true
 
 # Architecture
 TARGET_ARCH := arm
@@ -45,7 +46,8 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.bootdevice=msm_sdcc.1 ehci-hcd.park=3 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm
@@ -64,16 +66,40 @@ TARGET_KRAIT_BIONIC_PLDSIZE := 64
 MALLOC_SVELTE := true
 TARGET_NEEDS_GCC_LIBC := true
 
+# Krait Optimizations
+TARGET_USE_KRAIT_PLD_SET := true
+TARGET_KRAIT_BIONIC_PLDOFFS := 10
+TARGET_KRAIT_BIONIC_PLDTHRESH := 10
+TARGET_KRAIT_BIONIC_BBTHRESH := 64
+TARGET_KRAIT_BIONIC_PLDSIZE := 64
+
+# Bootanimantion Optimizations
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
+# Fixes Wifi-Mobile Data toggle issue
+MALLOC_SVELTE := true
+TARGET_NEEDS_GCC_LIBC := true
+
+# Webview defs
+PREBUILT_WEBVIEW_VERSION := chromium
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := onyx,OnePlus,E1003,ONE
+TARGET_OTA_ASSERT_DEVICE := onyx,OnePlus,E1003,ONE,X,E1001,E1005,E1000
 
 # Audio
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := true
 AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
+AUDIO_FEATURE_PCM_IOCTL_ENABLED := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
@@ -90,19 +116,15 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += $(PLATFORM_PATH)/cmhw
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
-# Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
-    ifeq ($(WITH_DEXPREOPT_BOOT_IMG_ONLY),)
-      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-    endif
-  endif
-endif
+# Enable real time lockscreen charging current values
+BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
 # Enable real time lockscreen charging current values
 BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
@@ -125,8 +147,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_VOLD_CRYPTFS_MIGRATE := true
 
 # FM
-TARGET_QCOM_NO_FM_FIRMWARE := true
 BOARD_HAVE_QCOM_FM := true
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
@@ -146,10 +168,11 @@ USE_OPENGL_RENDERER := true
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
 
+WITH_DEXPREOPT := false
+
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_onyx
 TARGET_RECOVERY_DEVICE_MODULES := libinit_onyx
-TARGET_UNIFIED_DEVICE := true
 
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
@@ -170,7 +193,7 @@ TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-TARGET_RIL_VARIANT := caf
+BOARD_PROVIDES_RILD := true
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 # RPC
@@ -181,9 +204,6 @@ include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
     $(PLATFORM_PATH)/sepolicy
-
-# SnapDragon LLVM Compiler
-TARGET_USE_SDCLANG := true
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true

@@ -9,7 +9,7 @@ vendor/lib/libscve_stub.so
 # Bluetooth
 bin/btnvtool
 # bin/hci_qcomm_init (from bacon)
-bin/hci_qcomm_init|5cb0f2d08acab2d995147c83ce500e16486692f9
+bin/hci_qcomm_init|022d27e7c7cba3c9bbb0deadaa1834a620eeb407
 vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so
 vendor/lib/libaptXScheduler.so
 vendor/lib/libbtnv.so
@@ -111,6 +111,17 @@ etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 
+# OnePlus Camera
+priv-app/OnePlusCamera/OnePlusCamera.apk
+priv-app/OnePlusCamera/lib/arm/libopbaselib.so
+priv-app/OnePlusCameraService/OnePlusCameraService.apk
+framework/org.codeaurora.camera.jar
+lib/libfilter-sdk.so
+lib/libmm-qcamera.so
+lib/libopbaselib.so
+lib/libopcamera.so
+lib/libopcameralib.so
+
 # DRM
 bin/qseecomd
 vendor/lib/libQSEEComAPI.so
@@ -161,6 +172,7 @@ vendor/lib/liblistenjni.so
 vendor/lib/liblistensoundmodel.so
 
 # Media
+lib/libOmxVdecHevc.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
 vendor/lib/libHevcSwDecoder.so
@@ -303,10 +315,13 @@ vendor/lib/libsystem_health_mon.so
 
 # Radio
 -app/shutdownlistener/shutdownlistener.apk
+-lib/libril.so
+-lib/librilutils.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
+bin/rild
 bin/rfs_access
 bin/rmt_storage
 etc/data/dsi_config.xml
@@ -329,6 +344,7 @@ vendor/lib/libxml.so
 vendor/lib/libcneapiclient.so
 
 # Sensors
+bin/charger_monitor
 bin/sensors.qcom
 etc/firmware/tp/15055/15055_FW_S3508_Tpk.img
 etc/firmware/tp/15055/15055_Limit_Tpk.img
