@@ -118,13 +118,7 @@ PRODUCT_PACKAGES += \
 # Doze
 PRODUCT_PACKAGES += \
     OnyxDoze
-
-# OTA Updates
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ota.romname=AOSP-OnePlus-X-7.1 \
-    ro.ota.version=$(shell date -u +%Y%m%d) \
-    ro.ota.manifest=https://romhut.com/roms/aosp-oneplus-x/ota.xml
-    
+   
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8974 \
