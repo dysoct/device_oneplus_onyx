@@ -1,22 +1,17 @@
 [
- {
-   "repository" : "ssawrav/device_oppo_common",
-   "target_path": "device/oppo/common",
-   "branch"     : "n7x-caf"
- },
- {
-   "repository" : "ssawrav/Arsenic.Kernel",
-   "target_path": "kernel/oneplus/onyx",
-   "branch"     : "stable"
- },
- {
-   "repository" : "LineageOS/android_packages_resources_devicesettings",
-   "target_path": "packages/resources/devicesettings",
-   "branch"     : "cm-14.1"
- },
- {
-   "repository" : "ssawrav/proprietary_vendor_oneplus",
-   "target_path": "vendor/oneplus",
-   "branch"     : "n-mr2"
- }
+  {
+    "repository": "AOSP-JF-MM/platform_device_oppo_common",
+    "target_path": "device/oppo/common",
+    "branch": "aosp-7.1.2-onyx"
+  },
+  {
+    "repository": "CheckYourScreen/Arsenic.Kernel-rebased",
+    "target_path": "kernel/oneplus/onyx",
+    "branch": "stable"
+  },
+  {
+    "repository": "BigTopKrazies/vendor_oneplus-onyx",
+    "target_path": "vendor/oneplus",
+    "branch": "n7.1"
+  }
 ]
