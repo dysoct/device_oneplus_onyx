@@ -19,7 +19,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/onyx/device.mk)
 
 # Inherit AOSP vendor
-$(call inherit-product, vendor/aosp/config.mk)
+$(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
 # Call the proprietary setup
 $(call inherit-product, vendor/oneplus/onyx/onyx-vendor.mk)
@@ -39,18 +39,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=OnePlus \
     BUILD_FINGERPRINT="OnePlus/OnePlus/OnePlus:6.0.1/MMB29M/10281213:user/release-keys" \
     PRIVATE_BUILD_DESC="OnePlus-user 6.0.1 MMB29M 10281213 release-keys"
-
-# AOSP packages
-PRODUCT_PACKAGES += \
-    Launcher3 \
-    messaging \
-    SoundRecorder \
-    Terminal \
-    WallpaperPicker
-
-# AOSP properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.setupwizard.rotation_locked=true \
-    ro.storage_manager.enabled=true
-
-UNOFFICIAL_BUILD_ID := YumeMichi
