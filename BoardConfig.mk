@@ -119,6 +119,9 @@ TARGET_EXFAT_DRIVER := exfat
 # Workaround for factory issue
 BOARD_VOLD_CRYPTFS_MIGRATE := true
 
+# Filesystem
+TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
+
 # FM
 BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
