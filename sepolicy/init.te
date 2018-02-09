@@ -1,3 +1,5 @@
 allow init socket_device:sock_file create;
 allow init socket_device:sock_file setattr;
 allow init proc_touchpanel:file write;
+
+set_prop(init, wcnss_prop)
