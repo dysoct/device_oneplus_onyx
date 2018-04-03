@@ -14,23 +14,28 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit from onyx device
 $(call inherit-product, device/oneplus/onyx/device.mk)
 
-# Inherit some common AOKP/LineageOS stuff.
-$(call inherit-product, vendor/aokp/configs/common_full_phone.mk)
+# Inherit some common Nitrogen stuff.
+$(call inherit-product, vendor/nitrogen/products/common.mk)
 
 # Call the proprietary setup
 $(call inherit-product-if-exists, vendor/oneplus/onyx/onyx-vendor.mk)
 
-PRODUCT_NAME := aokp_onyx
+PRODUCT_NAME := nitrogen_onyx
 PRODUCT_DEVICE := onyx
 PRODUCT_MANUFACTURER := OnePlus
 
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BRAND := OnePlus
+PRODUCT_MODEL := OnePlus
 TARGET_VENDOR := oneplus
 TARGET_VENDOR_PRODUCT_NAME := onyx
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
